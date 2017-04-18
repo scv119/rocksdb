@@ -62,6 +62,8 @@ struct CompactionOptionsFIFO {
   // Default: 1GB
   uint64_t max_table_files_size;
 
+  bool allow_compaction = true;
+  
   CompactionOptionsFIFO() : max_table_files_size(1 * 1024 * 1024 * 1024) {}
 };
 
