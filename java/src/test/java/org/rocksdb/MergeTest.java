@@ -67,16 +67,16 @@ public class MergeTest {
                columnFamilyHandleList)) {
         try {
           // writing aa under key
-          db.put(columnFamilyHandleList.get(1),
-              "cfkey".getBytes(), "aa".getBytes());
+          db.merge(columnFamilyHandleList.get(1),
+              "cfkey".getBytes(), "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".getBytes());
           // merge bb under key
           db.merge(columnFamilyHandleList.get(1),
-              "cfkey".getBytes(), "bb".getBytes());
+              "cfkey".getBytes(), "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb".getBytes());
 
           byte[] value = db.get(columnFamilyHandleList.get(1),
               "cfkey".getBytes());
           String strValue = new String(value);
-          assertThat(strValue).isEqualTo("aa,bb");
+          assertThat(strValue).isEqualTo("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         } finally {
           for (final ColumnFamilyHandle handle : columnFamilyHandleList) {
             handle.close();
